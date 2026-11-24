@@ -27,7 +27,7 @@ function AppShell() {
   };
 
   return (
-    <div className="flex min-h-screen bg-ink-100">
+    <div className="flex min-h-screen flex-col bg-ink-100 lg:flex-row">
       <Sidebar
         active={view}
         onNavigate={setView}

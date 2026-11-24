@@ -122,7 +122,7 @@ export default function Dashboard() {
               <span>{formatDuration(stats.last7.reduce((s, d) => s + d.minutes, 0))} total</span>
             </div>
           </div>
-          <div className="flex items-end justify-between gap-2 h-48">
+          <div className="flex items-stretch justify-between gap-2 h-48">
             {stats.last7.map((day, i) => {
               const heightPct = (day.minutes / stats.maxMinutes) * 100;
               return (
@@ -168,13 +168,12 @@ export default function Dashboard() {
                   className="flex items-center gap-3 rounded-xl border border-ink-100 p-3"
                 >
                   <div
-                    className={`flex h-9 w-9 items-center justify-center rounded-lg ${
-                      s.type === 'focus'
+                    className={`flex h-9 w-9 items-center justify-center rounded-lg ${s.type === 'focus'
                         ? 'bg-primary-50 text-primary-600'
                         : s.type === 'longBreak'
                           ? 'bg-accent-50 text-accent-600'
                           : 'bg-success-50 text-success-600'
-                    }`}
+                      }`}
                   >
                     {s.type === 'focus' ? <Flame className="h-4 w-4" /> : <CheckCircle2 className="h-4 w-4" />}
                   </div>

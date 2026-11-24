@@ -202,11 +202,11 @@ export default function TimerView() {
       </div>
 
       {/* Timer card */}
-      <div className="card p-8 sm:p-12">
+      <div className="card p-5 sm:p-12">
         <div className="flex flex-col items-center">
           {/* Circular timer */}
           <div className="relative flex items-center justify-center">
-            <svg width="300" height="300" viewBox="0 0 300 300" className="-rotate-90">
+            <svg viewBox="0 0 300 300" className="-rotate-90 w-full max-w-[300px] h-auto">
               <circle
                 cx="150"
                 cy="150"
@@ -235,7 +235,7 @@ export default function TimerView() {
                 <config.icon className="h-4 w-4" />
                 <span className="text-xs font-semibold uppercase tracking-wider">{config.label}</span>
               </div>
-              <span className="font-mono text-6xl font-bold text-ink-900 tabular-nums tracking-tight">
+              <span className="font-mono text-5xl sm:text-6xl font-bold text-ink-900 tabular-nums tracking-tight">
                 {display}
               </span>
               <span className="text-sm text-ink-400 mt-2">
@@ -245,7 +245,7 @@ export default function TimerView() {
           </div>
 
           {/* Controls */}
-          <div className="flex items-center gap-3 mt-8">
+          <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
             {!running ? (
               <button onClick={handleStart} className="btn-primary px-8 py-3 text-base" disabled={secondsLeft === 0}>
                 <Play className="h-5 w-5" />

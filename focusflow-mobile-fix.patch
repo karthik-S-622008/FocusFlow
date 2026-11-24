@@ -1,0 +1,49 @@
+diff --git a/src/App.tsx b/src/App.tsx
+index b91d6bf..e2d69eb 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -27,7 +27,7 @@ function AppShell() {
+   };
+ 
+   return (
+-    <div className="flex min-h-screen bg-ink-100">
++    <div className="flex min-h-screen flex-col bg-ink-100 lg:flex-row">
+       <Sidebar
+         active={view}
+         onNavigate={setView}
+diff --git a/src/components/views/Dashboard.tsx b/src/components/views/Dashboard.tsx
+index bd1c60d..0abfb8e 100644
+--- a/src/components/views/Dashboard.tsx
++++ b/src/components/views/Dashboard.tsx
+@@ -3,6 +3,13 @@ import { useMemo } from 'react';
+ import { useStore } from '@/store';
+ import { formatDuration, isToday } from '@/lib/format';
+ 
++const cardColors: Record<string, string> = {
++  primary: 'bg-primary-50 text-primary-600',
++  accent: 'bg-accent-50 text-accent-600',
++  success: 'bg-success-50 text-success-600',
++  warning: 'bg-warning-50 text-warning-600',
++};
++
+ export default function Dashboard() {
+   const { tasks, sessions, todayFocusSessions, todayFocusMinutes, totalFocusMinutes, completedSessions } = useStore();
+ 
+@@ -99,7 +106,7 @@ export default function Dashboard() {
+                   <p className="text-xs text-ink-400 mt-1">{card.sub}</p>
+                 </div>
+                 <div
+-                  className={`flex h-11 w-11 items-center justify-center rounded-xl bg-${card.color}-50 text-${card.color}-600`}
++                  className={`flex h-11 w-11 items-center justify-center rounded-xl ${cardColors[card.color]}`}
+                 >
+                   <Icon className="h-5 w-5" />
+                 </div>
+@@ -122,7 +129,7 @@ export default function Dashboard() {
+               <span>{formatDuration(stats.last7.reduce((s, d) => s + d.minutes, 0))} total</span>
+             </div>
+           </div>
+-          <div className="flex items-end justify-between gap-2 h-48">
++          <div className="flex items-stretch justify-between gap-2 h-48">
+             {stats.last7.map((day, i) => {
+               const heightPct = (day.minutes / stats.maxMinutes) * 100;
+               return (
